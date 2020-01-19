@@ -3,14 +3,16 @@ public class personnelManagement {
         System.out.println("Hello World!");
     }
 }
+
 class Person{
+    // The encapsulated instance variables
     private String name;
     private String surname;
     private int age;
-    private String idNo;
+    private int idNo;
     private String adress;
 
-    // Getters and setters for the encapsulated instance variables
+    // Getters and setters
     public String getName(){
         return name;
     }
@@ -43,16 +45,40 @@ class Person{
         this.adress = adress;
     }
 
-    public String getIdNo() {
+    public int getIdNo() {
         return idNo;
     }
 
-    public void setIdNo(String idNo) {
+    public void setIdNo(int idNo) {
         this.idNo = idNo;
     }
 
     public void Print(){
         System.out.printf("Name: %s\n Surname: %s\n Age: %d\n IdNo: %s\n Adress: %s\n", name,
                 surname, age, idNo, adress);
+    }
+}
+
+class Student extends Person{
+    
+    // The encapsulated instance variables
+    private int studentNo;
+    private String className;
+
+    // Getters and setters
+    public int getStudentNo() {
+        return studentNo;
+    }
+
+    public void setStudentNo(int studentNo) {
+        this.studentNo = studentNo;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }
