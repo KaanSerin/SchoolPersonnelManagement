@@ -1,6 +1,10 @@
 public class personnelManagement {
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        Teacher p1 = new Teacher("Kaan", "Serin", 23,
+                12341, "Teacher", 12000);
+        p1.setAdress("Cyprus, Famagusta");
+        System.out.println(p1.getAdress());
     }
 }
 
