@@ -12,6 +12,13 @@ class Person{
     private int idNo;
     private String adress;
 
+    // Constructor
+    public Person(String name, String surname, int age) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+    }
+
     // Getters and setters
     public String getName(){
         return name;
@@ -59,12 +66,102 @@ class Person{
     }
 }
 
+class AcademicPersonnel extends Person{
+    // Encapsulated instance variables
+    private int personnelNo;
+    private String position;
+    private int salary;
+
+    // Constructor
+    public AcademicPersonnel(String name, String surname, int age, int personnelNo,
+                             String position, int salary) {
+        super(name, surname, age);
+        this.personnelNo = personnelNo;
+        this.position = position;
+        this.salary = salary;
+    }
+
+    // Getters and setters
+    public int getPersonnelNo() {
+        return personnelNo;
+    }
+
+    public void setPersonnelNo(int personnelNo) {
+        this.personnelNo = personnelNo;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+}
+
+class Teacher extends AcademicPersonnel{
+    // Encapsulated variables
+    private String taughtSubject;
+    private String[] toughtClasses;
+
+    // Constructor
+    public Teacher(String name, String surname, int age, int personnelNo, String position, int salary){
+        super(name, surname, age, personnelNo, position, salary);
+    }
+
+    //Getters and Setters
+    public String getTaughtSubject() {
+        return taughtSubject;
+    }
+
+    public void setTaughtSubject(String taughtSubject) {
+        this.taughtSubject = taughtSubject;
+    }
+
+    public String[] getToughtClasses() {
+        return toughtClasses;
+    }
+
+    public void setToughtClasses(String[] toughtClasses) {
+        this.toughtClasses = toughtClasses;
+    }
+}
+
+class AdministrativeStaff extends AcademicPersonnel{
+    private String department;
+
+    // Constructor
+    public AdministrativeStaff(String name, String surname, int age, int personnelNo, String position, int salary){
+        super(name, surname, age, personnelNo, position, salary);
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+}
+
 class Student extends Person{
-    
-    // The encapsulated instance variables
+    // Encapsulated instance variables
     private int studentNo;
     private String className;
 
+    public Student(String name, String surname, int age, int studentNo, String className){
+        super(name, surname, age);
+        this.studentNo = studentNo;
+        this.className = className;
+    }
     // Getters and setters
     public int getStudentNo() {
         return studentNo;
