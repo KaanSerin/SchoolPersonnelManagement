@@ -3,31 +3,41 @@ import java.util.Scanner;
 
 public class personnelManagement {
     public static void main(String[] args) {
-        final int STUDENTCAPACITY = 400;
-        final int TEACHERCAPACITY = 80;
-        final int STAFFCAPACITY = 80;
-        System.out.println("School staff Management System.");
+        final int CAPACITY = 400;
         Scanner scan = new Scanner(System.in);
+        Person[] people = new Person[CAPACITY];
 
-        Student[] students = new Student[STUDENTCAPACITY];
-        Teacher[] teachers = new Teacher[TEACHERCAPACITY];
-        AcademicPersonnel[] aPersonnel = new AcademicPersonnel[STAFFCAPACITY];
+        System.out.println("School staff Management System.");
 
-        System.out.println("Choose operation:\n1)Add\n2)Search\n3)Delete");
+        int top = 0;
         int input = 0;
+
         while(input != -1){
+            System.out.println("Choose operation:\n1)Add\n2)Search\n3)Delete");
             input = scan.nextInt();
             if(input == 1){
                 System.out.println("Add:\n1)Student\n2)Teacher\n3)Academic Personnel");
                 input = scan.nextInt();
-                continue;
+                if(input == 1){
+                    System.out.println("Enter the name, surname, age, studentNo, class of the student");
+                    people[top] = new Student(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next());
+                    people[top].Print();
+                    continue;
+                }
+                else if(input == 2){
+                    System.out.println("Enter the name, surname, age, personnelNo, taughSubject and the salary the teacher");
+                    people[top] = new Teacher(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
+                            scan.nextInt());
+                    people[top].Print();
+                    continue;
+                }
             }
             else if(input == 2){
-                System.out.println("Search:\n1)Student\n2)Teacher\n3)Academic Personnel");
+                System.out.println("Search:\n1)By Name\n2)Teacher\n3)Academic Personnel");
                 continue;
             }
             if(input == 3){
-                System.out.println("Person:\n1)Student\n2)Teacher\n3)Academic Personnel");
+                System.out.println("Delete:\n1)Student\n2)Teacher\n3)Academic Personnel");
                 continue;
             }
             else{
@@ -147,8 +157,9 @@ class Teacher extends AcademicPersonnel{
     private String[] toughtClasses;
 
     // Constructor
-    public Teacher(String name, String surname, int age, int personnelNo, String position, int salary){
-        super(name, surname, age, personnelNo, position, salary);
+    public Teacher(String name, String surname, int age, int personnelNo, String taughtSubject, int salary){
+        super(name, surname, age, personnelNo, "Teaching staff", salary);
+        this.taughtSubject = taughtSubject;
     }
 
     //Getters and Setters
@@ -166,6 +177,10 @@ class Teacher extends AcademicPersonnel{
 
     public void setToughtClasses(String[] toughtClasses) {
         this.toughtClasses = toughtClasses;
+    }
+
+    public void Print(){
+        System.out.printf("%s %s is a teacher who teaches %s\n", getName(), getSurname(), taughtSubject);
     }
 }
 
@@ -211,5 +226,9 @@ class Student extends Person{
 
     public void setClassName(String className) {
         this.className = className;
+    }
+
+    public void Print(){
+        System.out.printf("%s %s is a student from the class %s\n", getName(), getSurname(), className);
     }
 }
