@@ -1,10 +1,35 @@
+import java.sql.SQLOutput;
+import java.util.Scanner;
+
 public class personnelManagement {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        Teacher p1 = new Teacher("Kaan", "Serin", 23,
-                12341, "Teacher", 12000);
-        p1.setAdress("Cyprus, Famagusta");
-        System.out.println(p1.getAdress());
+        final int STUDENTCAPACITY = 400;
+        final int TEACHERCAPACITY = 80;
+        final int STAFFCAPACITY = 80;
+        System.out.println("School staff Management System.");
+        Scanner scan = new Scanner(System.in);
+
+        Student[] students = new Student[STUDENTCAPACITY];
+        Teacher[] teachers = new Teacher[TEACHERCAPACITY];
+        AcademicPersonnel[] aPersonnel = new AcademicPersonnel[STAFFCAPACITY];
+
+        System.out.println("Choose operation:\n1)Add\n2)Search\n3)Delete");
+        int input = scan.nextInt();
+        while(input != -1){
+            if(input == 1){
+                System.out.println("Add:\n1)Student\n2)Teacher\n3)Academic Personnel");
+                input = scan.nextInt();
+            }
+            else if(input == 2){
+                System.out.println("Add:\n1)Student\n2)Teacher\n3)Academic Personnel");
+            }
+            if(input == 3){
+                System.out.println("Add:\n1)Student\n2)Teacher\n3)Academic Personnel");
+            }
+            else{
+                System.out.println("Invalid operation.");
+            }
+        }
     }
 }
 

@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="41da4b9e-62cf-44e7-9c7e-9cc0a0cf572c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SchoolPersonnelManagement/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SchoolPersonnelManagement/Person.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/personnelManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/personnelManagement.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -11,6 +10,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="SchoolPersonnelManagement" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -66,6 +68,7 @@
       <option name="presentableId" value="Default" />
       <updated>1579465482865</updated>
       <workItem from="1579465485758" duration="750000" />
+      <workItem from="1579517972839" duration="820000" />
     </task>
     <servers />
   </component>
