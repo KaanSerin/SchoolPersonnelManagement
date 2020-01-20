@@ -12,22 +12,27 @@ public class personnelManagement {
         Student[] students = new Student[STUDENTCAPACITY];
         Teacher[] teachers = new Teacher[TEACHERCAPACITY];
         AcademicPersonnel[] aPersonnel = new AcademicPersonnel[STAFFCAPACITY];
-
+        
         System.out.println("Choose operation:\n1)Add\n2)Search\n3)Delete");
-        int input = scan.nextInt();
+        int input = 0;
         while(input != -1){
+            input = scan.nextInt();
             if(input == 1){
                 System.out.println("Add:\n1)Student\n2)Teacher\n3)Academic Personnel");
                 input = scan.nextInt();
+                continue;
             }
             else if(input == 2){
-                System.out.println("Add:\n1)Student\n2)Teacher\n3)Academic Personnel");
+                System.out.println("Search:\n1)Student\n2)Teacher\n3)Academic Personnel");
+                continue;
             }
             if(input == 3){
-                System.out.println("Add:\n1)Student\n2)Teacher\n3)Academic Personnel");
+                System.out.println("Person:\n1)Student\n2)Teacher\n3)Academic Personnel");
+                continue;
             }
             else{
                 System.out.println("Invalid operation.");
+                continue;
             }
         }
     }
