@@ -12,7 +12,7 @@ public class personnelManagement {
         Student[] students = new Student[STUDENTCAPACITY];
         Teacher[] teachers = new Teacher[TEACHERCAPACITY];
         AcademicPersonnel[] aPersonnel = new AcademicPersonnel[STAFFCAPACITY];
-        
+
         System.out.println("Choose operation:\n1)Add\n2)Search\n3)Delete");
         int input = 0;
         while(input != -1){
