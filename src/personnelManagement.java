@@ -3,34 +3,83 @@ import java.util.Scanner;
 
 public class personnelManagement {
     public static void main(String[] args) {
+
         final int CAPACITY = 400;
         Scanner scan = new Scanner(System.in);
+
+        // This object array will store the student, teacher, and the academicPersonnel objects
         Person[] people = new Person[CAPACITY];
 
         System.out.println("School staff Management System.");
 
+        // The top of the people array
         int top = 0;
+
+        // The input from the user
         int input = 0;
 
+        // If the user enters -1, the loop will terminate
         while(input != -1){
-            System.out.println("Choose operation:\n1)Add\n2)Search\n3)Delete");
+            System.out.println("\nChoose operation:\n1)Add\n2)Search\n3)Delete");
             input = scan.nextInt();
             if(input == 1){
-                System.out.println("Add:\n1)Student\n2)Teacher\n3)Academic Personnel");
+
+                System.out.println("Add:\n1)Student\n2)Teacher\n3)Academic Personnel 4)Administrative Staff");
                 input = scan.nextInt();
+
+                // Adding a student object
                 if(input == 1){
                     System.out.println("Enter the name, surname, age, studentNo, class of the student");
+
+                    // The object is initialized and assigned to the [top] of the people array
                     people[top] = new Student(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next());
+                    // For testing
                     people[top].Print();
                     continue;
                 }
+
+                // Adding a teacher object
                 else if(input == 2){
-                    System.out.println("Enter the name, surname, age, personnelNo, taughSubject and the salary the teacher");
+                    System.out.println("Enter the name, surname, age, personnelNo, taughSubject and the salary of the teacher");
+
+                    // The object is initialized and assigned to the [top] of the people array
                     people[top] = new Teacher(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
                             scan.nextInt());
+                    // For testing
                     people[top].Print();
                     continue;
                 }
+
+                // Adding an academic staff object
+                else if(input == 3){
+                    System.out.println("Enter the name, surname, age, personnelNo, position and the salary of the personnel");
+
+                    // The object is initialized and assigned to the [top] of the people array
+                    people[top] = new AcademicPersonnel(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
+                            scan.nextInt());
+                    // For testing
+                    people[top].Print();
+                    continue;
+                }
+
+                // Adding an administrative staff object
+                else if(input == 4){
+                    System.out.println("Enter the name, surname, age, personnelNo, position, department and the salary of admin staff");
+
+                    // The object is initialized and assigned to the [top] of the people array
+                    people[top] = new AdministrativeStaff(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
+                            scan.next(), scan.nextInt());
+                    // For testing
+                    people[top].Print();
+                    continue;
+                }
+
+                // Whe an invalid input is received
+                else{
+                    System.out.println("Invalid input!");
+                    continue;
+                }
+
             }
             else if(input == 2){
                 System.out.println("Search:\n1)By Name\n2)Teacher\n3)Academic Personnel");
@@ -149,6 +198,10 @@ class AcademicPersonnel extends Person{
     public void setSalary(int salary) {
         this.salary = salary;
     }
+
+    public void Print(){
+        System.out.printf("%s %s is an academic personnel working at %s.\n", getName(), getSurname(), position);
+    }
 }
 
 class Teacher extends AcademicPersonnel{
@@ -180,7 +233,7 @@ class Teacher extends AcademicPersonnel{
     }
 
     public void Print(){
-        System.out.printf("%s %s is a teacher who teaches %s\n", getName(), getSurname(), taughtSubject);
+        System.out.printf("%s %s is a teacher who teaches %s.\n", getName(), getSurname(), taughtSubject);
     }
 }
 
@@ -188,8 +241,9 @@ class AdministrativeStaff extends AcademicPersonnel{
     private String department;
 
     // Constructor
-    public AdministrativeStaff(String name, String surname, int age, int personnelNo, String position, int salary){
+    public AdministrativeStaff(String name, String surname, int age, int personnelNo, String position, String department,int salary){
         super(name, surname, age, personnelNo, position, salary);
+        this.department = department;
     }
 
     public String getDepartment() {
@@ -198,6 +252,10 @@ class AdministrativeStaff extends AcademicPersonnel{
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public void Print(){
+        System.out.printf("%s %s is an administrative staff from %s department.\n", getName(), getSurname(), department);
     }
 }
 
