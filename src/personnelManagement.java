@@ -3,7 +3,8 @@ import java.util.Scanner;
 
 public class personnelManagement {
     public static void main(String[] args) {
-
+//        Person kaan = new Student("kaan", "serin", 19, 123, "12a");
+//        System.out.println(kaan.getName() == "kaan");
         final int CAPACITY = 400;
         Scanner scan = new Scanner(System.in);
 
@@ -34,7 +35,7 @@ public class personnelManagement {
                     // The object is initialized and assigned to the [top] of the people array
                     people[top++] = new Student(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next());
                     // For testing
-                    people[top].Print();
+                    //people[top - 1].Print();
                     continue;
                 }
 
@@ -46,7 +47,7 @@ public class personnelManagement {
                     people[top++] = new Teacher(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
                             scan.nextInt());
                     // For testing
-                    people[top].Print();
+                    //people[top - 1].Print();
                     continue;
                 }
 
@@ -58,7 +59,7 @@ public class personnelManagement {
                     people[top++] = new AcademicPersonnel(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
                             scan.nextInt());
                     // For testing
-                    people[top].Print();
+                    //people[top - 1].Print();
                     continue;
                 }
 
@@ -70,7 +71,7 @@ public class personnelManagement {
                     people[top++] = new AdministrativeStaff(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
                             scan.next(), scan.nextInt());
                     // For testing
-                    people[top].Print();
+                    //people[top - 1].Print();
                     continue;
                 }
 
@@ -91,7 +92,7 @@ public class personnelManagement {
 
                 // Searching by name
                 if(input == 1){
-                    System.out.print("Enter the name and surname: ");
+                    System.out.println("Enter the name and surname: ");
                     // Getting name and surname
                     String name = scan.next();
                     String surname = scan.next();
@@ -105,7 +106,7 @@ public class personnelManagement {
                         if(people[i] == null) break;
 
                         // if the name and surname is matching, copy the object to the searchResult array
-                        if(people[i].getName() == name && people[i].getSurname() == surname){
+                        if(people[i].getName().equals(name) && people[i].getSurname().equals(surname)){
                             searchResult[resultTop++] = people[i];
                         }
                     }
@@ -336,6 +337,6 @@ class Student extends Person{
     }
 
     public void Print(){
-        System.out.printf("%s %s is a student from the class %s\n", getName(), getSurname(), className);
+        System.out.printf("%s %s is a student with student no %d from the class %s\n", getName(), getSurname(), studentNo, className);
     }
 }
