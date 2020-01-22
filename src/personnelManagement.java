@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class personnelManagement {
     public static void main(String[] args) {
-//        Person kaan = new Student("kaan", "serin", 19, 123, "12a");
-//        System.out.println(kaan.getName() == "kaan");
+        // the capacity of the array
         final int CAPACITY = 400;
+        // initializing the scanner
         Scanner scan = new Scanner(System.in);
 
         // This object array will store the student, teacher, and the academicPersonnel objects
