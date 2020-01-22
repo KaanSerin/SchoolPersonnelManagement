@@ -32,7 +32,7 @@ public class personnelManagement {
                     System.out.println("Enter the name, surname, age, studentNo, class of the student");
 
                     // The object is initialized and assigned to the [top] of the people array
-                    people[top] = new Student(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next());
+                    people[top++] = new Student(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next());
                     // For testing
                     people[top].Print();
                     continue;
@@ -43,7 +43,7 @@ public class personnelManagement {
                     System.out.println("Enter the name, surname, age, personnelNo, taughSubject and the salary of the teacher");
 
                     // The object is initialized and assigned to the [top] of the people array
-                    people[top] = new Teacher(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
+                    people[top++] = new Teacher(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
                             scan.nextInt());
                     // For testing
                     people[top].Print();
@@ -55,7 +55,7 @@ public class personnelManagement {
                     System.out.println("Enter the name, surname, age, personnelNo, position and the salary of the personnel");
 
                     // The object is initialized and assigned to the [top] of the people array
-                    people[top] = new AcademicPersonnel(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
+                    people[top++] = new AcademicPersonnel(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
                             scan.nextInt());
                     // For testing
                     people[top].Print();
@@ -67,7 +67,7 @@ public class personnelManagement {
                     System.out.println("Enter the name, surname, age, personnelNo, position, department and the salary of admin staff");
 
                     // The object is initialized and assigned to the [top] of the people array
-                    people[top] = new AdministrativeStaff(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
+                    people[top++] = new AdministrativeStaff(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
                             scan.next(), scan.nextInt());
                     // For testing
                     people[top].Print();
@@ -81,8 +81,57 @@ public class personnelManagement {
                 }
 
             }
+
+            // Search option is selected
             else if(input == 2){
-                System.out.println("Search:\n1)By Name\n2)Teacher\n3)Academic Personnel");
+                System.out.println("Search:\n1)By Name Surname\n2)Teacher\n3)Academic Personnel");
+
+                // Get the next input
+                input = scan.nextInt();
+
+                // Searching by name
+                if(input == 1){
+                    System.out.print("Enter the name and surname: ");
+                    // Getting name and surname
+                    String name = scan.next();
+                    String surname = scan.next();
+
+                    // object array for storing the potential results
+                    Person[] searchResult = new Person[top];
+                    int resultTop = 0;
+
+                    // searching each element of the people object array until a null object is reached
+                    for(int i = 0; i < top; i++){
+                        if(people[i] == null) break;
+
+                        // if the name and surname is matching, copy the object to the searchResult array
+                        if(people[i].getName() == name && people[i].getSurname() == surname){
+                            searchResult[resultTop++] = people[i];
+                        }
+                    }
+
+                    // No people were found, therefore no object was appended
+                    if(resultTop == 0){
+                        System.out.printf("No person by name %s %s could be found.\n", name, surname);
+                    }
+
+                    // If only 1 person was found, print it
+                    else if(resultTop == 1){
+
+                        // Calling the Print method of each object -- An example of Polymorphism
+                        searchResult[0].Print();
+                    }
+
+                    // Multiple people were found, print them using a while loop
+                    else{
+                        for(int i = 0; i < resultTop; i++){
+
+                            // Calling the Print method of each object -- An example of Polymorphism
+                            searchResult[i].Print();
+                        }
+                    }
+
+                }
                 continue;
             }
             if(input == 3){
