@@ -136,6 +136,8 @@ public class personnelManagement {
                     // Freeing up memory
                     searchResult = null;
                 }
+
+                // Searching by ID
                 else if(input == 2){
                     System.out.println("Enter and id number: ");
 
@@ -171,7 +173,10 @@ public class personnelManagement {
                     // Freeing up memory
                     searchResult = null;
                 }
-                continue;
+                else{
+                    System.out.println("Invalid option.");
+                    continue;
+                }
             }
             if(input == 3){
                 System.out.println("Delete:\n1)By Name\n2)By ID Number");
