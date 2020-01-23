@@ -1,4 +1,5 @@
 import java.sql.SQLOutput;
+import java.util.Random;
 import java.util.Scanner;
 
 public class personnelManagement {
@@ -85,7 +86,7 @@ public class personnelManagement {
 
             // Search option is selected
             else if(input == 2){
-                System.out.println("Search:\n1)By Name Surname\n2)Teacher\n3)Academic Personnel");
+                System.out.println("Search:\n1)By Name Surname\n2)Id Number");
 
                 // Get the next input
                 input = scan.nextInt();
@@ -132,16 +133,52 @@ public class personnelManagement {
                         }
                     }
 
+                    // Freeing up memory
+                    searchResult = null;
+                }
+                else if(input == 2){
+                    System.out.println("Enter and id number: ");
+
+                    // Getting name and surname
+                    int idNo = scan.nextInt();
+
+                    // object array for storing the potential results
+                    Person[] searchResult = new Person[top];
+                    int resultTop = 0;
+
+                    // searching each element of the people object array until a null object is reached
+                    for(int i = 0; i < top; i++){
+                        if(people[i] == null) break;
+
+                        // if the name and surname is matching, copy the object to the searchResult array
+                        if(people[i].getIdNo() == idNo){
+                            searchResult[resultTop++] = people[i];
+                            break;
+                        }
+                    }
+
+                    // No people were found, therefore no object was appended
+                    if(resultTop == 0){
+                        System.out.printf("No person by idNo %d could be found.\n", idNo);
+                    }
+
+                    // If the person was found, print it
+                    else{
+                        // Calling the Print method of each object -- An example of Polymorphism
+                        searchResult[0].Print();
+                    }
+
+                    // Freeing up memory
+                    searchResult = null;
                 }
                 continue;
             }
             if(input == 3){
-                System.out.println("Delete:\n1)Student\n2)Teacher\n3)Academic Personnel");
+                System.out.println("Delete:\n1)By Name\n2)By ID Number");
                 continue;
             }
             else{
                 System.out.println("Invalid operation.");
-                continue;
             }
         }
     }
@@ -160,6 +197,10 @@ class Person{
         this.name = name;
         this.surname = surname;
         this.age = age;
+        Random rand = new Random();
+
+        // Generating a random id number for testing purposes
+        idNo = rand.nextInt(99999);
     }
 
     // Getters and setters
@@ -283,7 +324,7 @@ class Teacher extends AcademicPersonnel{
     }
 
     public void Print(){
-        System.out.printf("%s %s is a teacher who teaches %s.\n", getName(), getSurname(), taughtSubject);
+        System.out.printf("%s %s is a teacher who teaches %s.\n idNo: \n", getName(), getSurname(), taughtSubject, getIdNo());
     }
 }
 
@@ -305,7 +346,7 @@ class AdministrativeStaff extends AcademicPersonnel{
     }
 
     public void Print(){
-        System.out.printf("%s %s is an administrative staff from %s department.\n", getName(), getSurname(), department);
+        System.out.printf("%s %s is an administrative staff from %s department.\n idNo: %d\n", getName(), getSurname(), department, getIdNo());
     }
 }
 
@@ -337,6 +378,6 @@ class Student extends Person{
     }
 
     public void Print(){
-        System.out.printf("%s %s is a student with student no %d from the class %s\n", getName(), getSurname(), studentNo, className);
+        System.out.printf("%s %s is a student with student no %d from the class %s\n idNo: %d\n", getName(), getSurname(), studentNo, className, getIdNo());
     }
 }
