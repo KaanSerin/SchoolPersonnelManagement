@@ -24,6 +24,8 @@ public class personnelManagement {
         while(input != -1){
             System.out.println("\nChoose operation:\n1)Add\n2)Search\n3)Delete");
             input = scan.nextInt();
+
+            // Adding people
             if(input == 1){
 
                 System.out.println("Add:\n1)Student\n2)Teacher\n3)Academic Personnel 4)Administrative Staff");
@@ -59,8 +61,10 @@ public class personnelManagement {
                     // The object is initialized and assigned to the [top] of the people array
                     people[top++] = new AcademicPersonnel(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
                             scan.nextInt());
+
                     // For testing
                     //people[top - 1].Print();
+
                     continue;
                 }
 
@@ -71,8 +75,10 @@ public class personnelManagement {
                     // The object is initialized and assigned to the [top] of the people array
                     people[top++] = new AdministrativeStaff(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
                             scan.next(), scan.nextInt());
+
                     // For testing
                     //people[top - 1].Print();
+
                     continue;
                 }
 
@@ -104,7 +110,7 @@ public class personnelManagement {
 
                     // searching each element of the people object array until a null object is reached
                     for(int i = 0; i < top; i++){
-                        if(people[i] == null) break;
+                        if(people[i] == null) continue;
 
                         // if the name and surname is matching, copy the object to the searchResult array
                         if(people[i].getName().equals(name) && people[i].getSurname().equals(surname)){
@@ -150,7 +156,7 @@ public class personnelManagement {
 
                     // searching each element of the people object array until a null object is reached
                     for(int i = 0; i < top; i++){
-                        if(people[i] == null) break;
+                        if(people[i] == null) continue;
 
                         // if the name and surname is matching, copy the object to the searchResult array
                         if(people[i].getIdNo() == idNo){
@@ -173,13 +179,44 @@ public class personnelManagement {
                     // Freeing up memory
                     searchResult = null;
                 }
-                else{
-                    System.out.println("Invalid option.");
-                    continue;
-                }
+
+//                else{
+//                    System.out.println("Invalid option.");
+//                    continue;
+//                }
             }
+
+            // Deleting people
             if(input == 3){
                 System.out.println("Delete:\n1)By Name\n2)By ID Number");
+                input = scan.nextInt();
+
+                if(input == 1){
+                    System.out.println("Enter the name and surname: ");
+
+                    // Getting name and surname
+                    String name = scan.next();
+                    String surname = scan.next();
+
+                    // searching each element of the people object array until a null object is reached
+                    for(int i = 0; i < top; i++){
+                        // if the name and surname is matching, copy the object to the searchResult array
+                        if(people[i].getName().equals(name) && people[i].getSurname().equals(surname)){
+                            people[i].Print();
+                            System.out.println("Are you sure you want to delete this person? y/n");
+                            String option = scan.next();
+                            if(option.equals("y")){
+                                people[i] = null;
+                                System.out.println("Deleted the person.");
+                            }
+                            else{
+                                System.out.println("Not deleted the person");
+                                continue;
+                            }
+                        }
+                    }
+
+                }
                 continue;
             }
             else{
@@ -257,6 +294,7 @@ class Person{
 
 class AcademicPersonnel extends Person{
     // Encapsulated instance variables
+    public static int noOfPersonnel;
     private int personnelNo;
     private String position;
     private int salary;
@@ -265,6 +303,7 @@ class AcademicPersonnel extends Person{
     public AcademicPersonnel(String name, String surname, int age, int personnelNo,
                              String position, int salary) {
         super(name, surname, age);
+        noOfPersonnel++;
         this.personnelNo = personnelNo;
         this.position = position;
         this.salary = salary;
@@ -302,12 +341,14 @@ class AcademicPersonnel extends Person{
 
 class Teacher extends AcademicPersonnel{
     // Encapsulated variables
+    public static int noOfTeachers;
     private String taughtSubject;
     private String[] toughtClasses;
 
     // Constructor
     public Teacher(String name, String surname, int age, int personnelNo, String taughtSubject, int salary){
         super(name, surname, age, personnelNo, "Teaching staff", salary);
+        noOfTeachers++;
         this.taughtSubject = taughtSubject;
     }
 
@@ -334,11 +375,13 @@ class Teacher extends AcademicPersonnel{
 }
 
 class AdministrativeStaff extends AcademicPersonnel{
+    public static int noOfAdministrativeStaff;
     private String department;
 
     // Constructor
     public AdministrativeStaff(String name, String surname, int age, int personnelNo, String position, String department,int salary){
         super(name, surname, age, personnelNo, position, salary);
+        noOfAdministrativeStaff++;
         this.department = department;
     }
 
@@ -357,6 +400,7 @@ class AdministrativeStaff extends AcademicPersonnel{
 
 class Student extends Person{
     // Encapsulated instance variables
+    public static int noOfStudents;
     private int studentNo;
     private String className;
 
@@ -364,6 +408,7 @@ class Student extends Person{
         super(name, surname, age);
         this.studentNo = studentNo;
         this.className = className;
+        noOfStudents++;
     }
     // Getters and setters
     public int getStudentNo() {
