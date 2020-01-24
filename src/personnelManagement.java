@@ -2,10 +2,20 @@ import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
+/*
+            TODO: 1) Decrementing the numberOf... for every deletion
+                  2) Deleting by ID Number
+                  3) Invalid input handling
+                  4) Debug found bugs
+                  5) Format the code so it is easier to read
+             */
+
 public class personnelManagement {
     public static void main(String[] args) {
+
         // the capacity of the array
         final int CAPACITY = 400;
+
         // initializing the scanner
         Scanner scan = new Scanner(System.in);
 
@@ -213,8 +223,11 @@ public class personnelManagement {
                     }
 
                 }
+                
                 continue;
             }
+
+            // If the user input is invalid
             else{
                 System.out.println("Invalid operation.");
             }
