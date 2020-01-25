@@ -3,8 +3,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 /*
-            TODO: 1) Decrementing the numberOf... for every deletion
-                  2) Deleting by ID Number
+            TODO: 1) Decrementing the numberOf... for every deletion ✓
+                  2) Deleting by ID Number ✓
                   3) Invalid input handling
                   4) Debug found bugs
                   5) Format the code so it is easier to read
@@ -47,8 +47,9 @@ public class personnelManagement {
 
                     // The object is initialized and assigned to the [top] of the people array
                     people[top++] = new Student(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next());
+
                     // For testing
-                    //people[top - 1].Print();
+                    System.out.printf("Added person with the ID Number: %d\n", people[top - 1].getIdNo());
                     continue;
                 }
 
@@ -60,7 +61,7 @@ public class personnelManagement {
                     people[top++] = new Teacher(scan.next(), scan.next(), scan.nextInt(), scan.nextInt(), scan.next(),
                             scan.nextInt());
                     // For testing
-                    //people[top - 1].Print();
+                    System.out.printf("Added person with the ID Number: %d\n", people[top - 1].getIdNo());
                     continue;
                 }
 
@@ -73,7 +74,7 @@ public class personnelManagement {
                             scan.nextInt());
 
                     // For testing
-                    //people[top - 1].Print();
+                    System.out.printf("Added person with the ID Number: %d\n", people[top - 1].getIdNo());
 
                     continue;
                 }
@@ -87,7 +88,7 @@ public class personnelManagement {
                             scan.next(), scan.nextInt());
 
                     // For testing
-                    //people[top - 1].Print();
+                    System.out.printf("Added person with the ID Number: %d\n", people[top - 1].getIdNo());
 
                     continue;
                 }
@@ -189,6 +190,7 @@ public class personnelManagement {
                     // Freeing up memory
                     searchResult = null;
                 }
+                continue;
             }
 
             // Deleting people
@@ -212,6 +214,20 @@ public class personnelManagement {
                             System.out.println("Are you sure you want to delete this person? y/n");
                             String option = scan.next();
                             if(option.equals("y")){
+                                if(people[i] instanceof Student){
+                                    Student.noOfStudents--;
+                                    continue;
+                                }
+                                if(people[i] instanceof Teacher){
+                                    Teacher.noOfTeachers--;
+                                }
+                                if(people[i] instanceof AdministrativeStaff){
+                                    AdministrativeStaff.noOfAdministrativeStaff--;
+                                }
+                                if(people[i] instanceof AcademicPersonnel){
+                                    AcademicPersonnel.noOfPersonnel--;
+                                }
+                                // Decrementing the numberOfs
                                 people[i] = null;
                                 System.out.println("Deleted the person.");
                             }
@@ -223,14 +239,62 @@ public class personnelManagement {
                     }
 
                 }
-                
+
+                // Deleting by ID
+                if(input == 2){
+                    System.out.println("The ID Number: ");
+
+                    // Getting the ID Number
+                    int idNo = scan.nextInt();
+
+                    // searching each element of the people object array until a null object is reached
+                    for(int i = 0; i < top; i++){
+                        //
+                        if(people[i].getIdNo() == idNo){
+                            // Printing the found person
+                            people[i].Print();
+
+                            System.out.println("Are you sure you want to delete this person? y/n");
+                            String option = scan.next();
+                            if(option.equals("y")){
+                                // Decrementing the numberOfs
+                                if(people[i] instanceof Student){
+                                    Student.noOfStudents--;
+                                }
+                                if(people[i] instanceof Teacher){
+                                    Teacher.noOfTeachers--;
+                                }
+                                if(people[i] instanceof AdministrativeStaff){
+                                    AdministrativeStaff.noOfAdministrativeStaff--;
+                                }
+                                if(people[i] instanceof AcademicPersonnel){
+                                    AcademicPersonnel.noOfPersonnel--;
+                                }
+                                people[i] = null;
+                                System.out.println("Deleted the person.");
+                            }
+                            else{
+                                System.out.println("Not deleted the person");
+                                continue;
+                            }
+                        }
+                    }
+                }
+
                 continue;
             }
 
             // If the user input is invalid
-            else{
+            else if(input != -1){
                 System.out.println("Invalid operation.");
             }
+
         }
+        // End of the loop. For testing purposes, the number of students, teachers, academic staff, and administrative staff is printed
+        System.out.printf("Number of students: %d\n", Student.noOfStudents);
+        System.out.printf("Number of teachers: %d\n", Teacher.noOfTeachers);
+        System.out.printf("Number of academic personnel: %d\n" , AcademicPersonnel.noOfPersonnel);
+        System.out.printf("Number of administrative staff: %d\n", AdministrativeStaff.noOfAdministrativeStaff);
+
     }
 }

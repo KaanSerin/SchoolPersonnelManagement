@@ -2,6 +2,7 @@ import java.util.Random;
 
 class Person{
     // The encapsulated instance variables
+    public static int numberOfPeople;
     private String name;
     private String surname;
     private int age;
@@ -144,7 +145,7 @@ class Teacher extends AcademicPersonnel{
     }
 
     public void Print(){
-        System.out.printf("%s %s is a teacher who teaches %s.\n idNo: \n", getName(), getSurname(), taughtSubject, getIdNo());
+        System.out.printf("%s %s is a teacher who teaches %s.\n idNo: %d\n", getName(), getSurname(), taughtSubject, getIdNo());
     }
 }
 
