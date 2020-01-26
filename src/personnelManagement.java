@@ -1,13 +1,14 @@
 import java.sql.SQLOutput;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
 /*
             TODO: 1) Decrementing the numberOf... for every deletion ✓
                   2) Deleting by ID Number ✓
-                  3) Invalid input handling
-                  4) Debug found bugs
-                  5) Format the code so it is easier to read
+                  3) Invalid input handling -- being worked on
+                  4) Debug found bugs -- fixed as found
+                  5) Format the code so it is easier to read -- being worked on
              */
 
 public class personnelManagement {
@@ -33,13 +34,29 @@ public class personnelManagement {
         // If the user enters -1, the loop will terminate
         while(input != -1){
             System.out.println("\nChoose operation:\n1)Add\n2)Search\n3)Delete");
-            input = scan.nextInt();
+
+            // Catching potential errors from the user input
+            try {
+                input = scan.nextInt();
+            }
+            catch (InputMismatchException e){
+                System.out.println("Invalid input.\nYou should enter a number!");
+                break;
+            }
 
             // Adding people
             if(input == 1){
 
                 System.out.println("Add:\n1)Student\n2)Teacher\n3)Academic Personnel 4)Administrative Staff");
-                input = scan.nextInt();
+
+                // Catching potential errors from the user input
+                try {
+                    input = scan.nextInt();
+                }
+                catch (InputMismatchException e){
+                    System.out.println("Invalid input.\nYou should enter a number!");
+                    break;
+                }
 
                 // Adding a student object
                 if(input == 1){
@@ -257,6 +274,7 @@ public class personnelManagement {
                             System.out.println("Are you sure you want to delete this person? y/n");
                             String option = scan.next();
                             if(option.equals("y")){
+
                                 // Decrementing the numberOfs
                                 if(people[i] instanceof Student){
                                     Student.noOfStudents--;
@@ -273,6 +291,8 @@ public class personnelManagement {
                                 people[i] = null;
                                 System.out.println("Deleted the person.");
                             }
+
+                            // When user enters anything other then y
                             else{
                                 System.out.println("Not deleted the person");
                                 continue;
@@ -290,7 +310,8 @@ public class personnelManagement {
             }
 
         }
-        // End of the loop. For testing purposes, the number of students, teachers, academic staff, and administrative staff is printed
+
+        //End of the loop. For testing purposes, the number of students, teachers, academic staff, and administrative staff is printed
         System.out.printf("Number of students: %d\n", Student.noOfStudents);
         System.out.printf("Number of teachers: %d\n", Teacher.noOfTeachers);
         System.out.printf("Number of academic personnel: %d\n" , AcademicPersonnel.noOfPersonnel);
